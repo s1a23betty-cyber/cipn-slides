@@ -435,7 +435,7 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
           <td><span class="hl">外科手套（30–48 mmHg）</span> + 中小腿彈力壓力襪<br>化療前後各 30 分鐘，全程共 90 分鐘<br>± EXCAP 漸進式有氧/阻力運動</td>
           <td>常規護理<br>（衛教）</td>
           <td>NCI-CTC v4.0 感覺/運動分級<br>PSQI（睡眠）<br>HADS（焦慮/憂鬱）</td>
-          <td>三臂 RCT<br>n = 108<br>（38/arm）</td>
+          <td>三臂 RCT<br>n = 108<br>（36/arm）</td>
         </tr>
       </tbody>
     </table>
@@ -665,8 +665,8 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
         <tr>
           <td style="text-align:center;padding:4px 3px;border:1px solid #ccc;font-weight:700;color:var(--acc);font-size:13px">Q3a</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px"><em style="color:var(--acc2)">搜尋策略：</em>是否已納入所有重要且相關的原始研究？<br><span style="font-size:11px;color:var(--muted)">Were all the relevant primary research studies likely to have been included? (Searching)</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#a07000">△ 不確定</td>
-          <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">搜尋 PubMed、Embase、Cochrane、WoS、Scopus 等共 9 個資料庫（含中文 CNKI、WanFang），PROSPERO 預先登錄（CRD42024621873）；惟未報告灰色文獻、trial registry 及 reference list 搜尋</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#1a7a3a">✓ 是</td>
+          <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">搜尋 9 個資料庫（含中英文）、MeSH + 自由詞、含非英語文獻、有搜灰色文獻和臨床試驗註冊、策略可重現。</td>
         </tr>
         <tr style="background:#fafaf8">
           <td style="text-align:center;padding:4px 3px;border:1px solid #ccc;font-weight:700;color:var(--acc);font-size:13px">Q3b</td>
@@ -714,13 +714,13 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
           <td style="text-align:center;padding:4px 3px;border:1px solid #ccc;font-weight:700;color:var(--acc);font-size:13px">Q6.1</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px"><em style="color:var(--acc2)">次群組分析：</em>是否適當？<br><span style="font-size:11px;color:var(--muted)">Subgroup analysis</span></td>
           <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#a07000">△ 不確定</td>
-          <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">有預先定義 subgroup，具臨床意義；惟無 interaction test，亦無 multiple testing correction</td>
+          <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">有標示 predefined subgroup（CTCAE vs. PNQ），具臨床意義，並執行 test for subgroup differences（Chi² test）；惟未提供 protocol 登錄來源確認預先設定，且 PNQ 亞組僅納入 2 篇，結果可信度有限。</td>
         </tr>
         <tr style="background:#fafaf8">
           <td style="text-align:center;padding:4px 3px;border:1px solid #ccc;font-weight:700;color:var(--acc);font-size:13px">Q6.2</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px"><em style="color:var(--acc2)">Meta-regression：</em>是否適當？<br><span style="font-size:11px;color:var(--muted)">Meta-regression</span></td>
           <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#a07000">△ 不確定</td>
-          <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">未進行 meta-regression；未說明原因（研究數量少可為合理理由，惟未明確陳述）</td>
+          <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">未進行 meta-regression。存在多個潛在效果修飾因子（壓力大小、介入時間、研究設計、癌別），但未探索。不過僅 7 篇研究，meta-regression 統計檢力不足（建議至少 10 篇），未做可以理解</td>
         </tr>
         <tr>
           <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:var(--acc)">Q7</td>
@@ -770,10 +770,10 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
       <div>Domain</div><div style="text-align:center">判定</div><div>關鍵依據</div>
     </div>
     <div style="display:grid;grid-template-columns:1.4fr 0.8fr 4.5fr;
-      background:#F0F8F0;border-left:4px solid var(--green);padding:5px 10px;border-radius:2px;align-items:center">
+      background:#FFFBEA;border-left:4px solid var(--yellow);padding:5px 10px;border-radius:2px;align-items:center">
       <div style="font-size:16px;font-weight:600;color:var(--acc2)">D1 隨機化<br><span style="font-size:11px;font-weight:400;color:var(--muted);font-style:italic">Bias arising from the randomization process</span></div>
-      <div style="text-align:center"><span class="dot dg"></span><br><span style="font-size:11px;color:var(--green)">Low Risk</span></div>
-      <div style="font-size:16px;color:var(--txt);line-height:1.5">研究採 1:1 隨機分配；兩組人口學特徵無顯著差異，未見明顯分配不均；惟未說明隨機序列產生方式及分派隱藏的具體執行方法；整體判定為低偏誤風險</div>
+      <div style="text-align:center"><span class="dot dy"></span><br><span style="font-size:11px;color:var(--yellow)">Some Concerns</span></div>
+      <div style="font-size:16px;color:var(--txt);line-height:1.5">研究採 1:1 隨機分配；兩組人口學特徵無顯著差異，未見明顯分配不均；惟未說明隨機序列產生方式及分派隱藏的具體執行方法</div>
     </div>
     <div style="display:grid;grid-template-columns:1.4fr 0.8fr 4.5fr;
       background:#FFEEEE;border-left:4px solid var(--red);padding:5px 10px;border-radius:2px;align-items:center">
@@ -785,7 +785,7 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
       background:#FFFBEA;border-left:4px solid var(--yellow);padding:5px 10px;border-radius:2px;align-items:center">
       <div style="font-size:16px;font-weight:600;color:var(--acc2)">D3 遺漏數據<br><span style="font-size:11px;font-weight:400;color:var(--muted);font-style:italic">Bias due to missing outcome data</span></div>
       <div style="text-align:center"><span class="dot dy"></span><br><span style="font-size:11px;color:var(--yellow)">Some Concerns</span></div>
-      <div style="font-size:16px;color:var(--txt);line-height:1.5">共 21 名受試者（約 17%）退出；研究雖進行三種假設情境的敏感度分析（無效假設、末次觀測、最不利假設），但在最不利假設下結果即不再具統計顯著性，顯示研究結論對遺漏資料具敏感性；遺漏資料是否為完全隨機遺漏無法被驗證</div>
+      <div style="font-size:16px;color:var(--txt);line-height:1.5">共 21 名受試者（約 17%）退出；且兩組退出原因不平衡（cooling 組主要因不耐受、compression 組主要因 self-intervention），退出原因明顯與介入相關；研究雖進行三種假設情境的敏感度分析（無效假設、末次觀測、最不利假設），但在最不利假設下結果即不再具統計顯著性，顯示研究結論對遺漏資料具敏感性；遺漏資料是否為完全隨機遺漏無法被驗證</div>
     </div>
     <div style="display:grid;grid-template-columns:1.4fr 0.8fr 4.5fr;
       background:#FFFBEA;border-left:4px solid var(--yellow);padding:5px 10px;border-radius:2px;align-items:center">
@@ -919,15 +919,66 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
         padding:4px 8px;border-radius:2px;margin-top:2px">
         ⚠ 注意：現有 meta-analysis 證據均源自 <strong>paclitaxel</strong> 化療族群，外推至其他化療藥物需謹慎
       </div>
-      <div class="card" style="font-size:16px;padding:7px 10px">
-        <div class="ct" style="font-size:16px">Michel et al. (2025) POLAR RCT</div>
-        Grade ≥2 CIPN：加壓 24% vs 對照手 38%（<strong>絕對風險差 −14%，P = 0.008</strong>）<br>
-        加壓 vs 冷凍差異 −5.47%（未達統計顯著差異，兩者效果相近）；加壓耐受性更佳
+      <div class="card" style="font-size:14px;padding:7px 10px">
+        <div class="ct" style="font-size:15px">Michel et al. (2025) POLAR RCT&#12288;<span style="font-size:13px;font-weight:400;color:var(--muted)">Grade &#8805;2 CIPN 發生率</span></div>
+        <div style="display:flex;flex-direction:column;gap:4px;margin:5px 0">
+          <div style="display:flex;align-items:center;gap:6px">
+            <span style="font-size:12px;width:32px;text-align:right;color:var(--green);font-weight:600;flex-shrink:0">加壓</span>
+            <div style="flex:1;background:#e0e8e0;border-radius:3px;height:14px">
+              <div style="width:24%;background:var(--green);height:100%;border-radius:3px"></div>
+            </div>
+            <span style="font-size:13px;font-weight:700;color:var(--green);width:30px">24%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <span style="font-size:12px;width:32px;text-align:right;color:#b03020;font-weight:600;flex-shrink:0">對照</span>
+            <div style="flex:1;background:#f0e0e0;border-radius:3px;height:14px">
+              <div style="width:38%;background:#c0392b;height:100%;border-radius:3px;opacity:0.8"></div>
+            </div>
+            <span style="font-size:13px;font-weight:700;color:#b03020;width:30px">38%</span>
+          </div>
+        </div>
+        <div style="font-size:13px;color:var(--txt)"><strong>RD = &#8722;14%</strong>&#65288;P = 0.008&#65289;&#12288;加壓 vs 冷凍 RD &#8722;5.47%&#65288;NS&#65289;；加壓耐受性更佳</div>
       </div>
-      <div class="card" style="font-size:16px;padding:7px 10px;border-left-color:var(--green)">
-        <div class="ct" style="font-size:16px;color:var(--green)">Yu et al. (2025) 三臂 RCT</div>
-        Grade 2 CIPN（4 個化療週期後）：加壓 25% vs 對照 50%（<strong>P &lt; 0.001</strong>）<br>
-        6 個月追蹤：加壓 16.7% vs 對照 38.9%，效果持續
+      <div class="card" style="font-size:14px;padding:7px 10px;border-left-color:var(--green)">
+        <div class="ct" style="font-size:15px;color:var(--green)">Yu et al. (2025) 三臂 RCT&#12288;<span style="font-size:13px;font-weight:400;color:var(--muted)">Grade 2 CIPN 發生率</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:5px 0">
+          <div>
+            <div style="font-size:11px;color:var(--muted);margin-bottom:3px">4 個化療週期後&#12288;<strong style="color:var(--acc)">P &lt; 0.001</strong></div>
+            <div style="display:flex;align-items:center;gap:5px;margin-bottom:3px">
+              <span style="font-size:11px;width:28px;text-align:right;color:var(--green);font-weight:600;flex-shrink:0">加壓</span>
+              <div style="flex:1;background:#e0e8e0;border-radius:2px;height:12px">
+                <div style="width:25%;background:var(--green);height:100%;border-radius:2px"></div>
+              </div>
+              <span style="font-size:11px;font-weight:700;color:var(--green);width:32px">25%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span style="font-size:11px;width:28px;text-align:right;color:#b03020;font-weight:600;flex-shrink:0">對照</span>
+              <div style="flex:1;background:#f0e0e0;border-radius:2px;height:12px">
+                <div style="width:50%;background:#c0392b;height:100%;border-radius:2px;opacity:0.8"></div>
+              </div>
+              <span style="font-size:11px;font-weight:700;color:#b03020;width:32px">50%</span>
+            </div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">RD = &#8722;25%</div>
+          </div>
+          <div>
+            <div style="font-size:11px;color:var(--muted);margin-bottom:3px">6 個月追蹤&#12288;效果持續</div>
+            <div style="display:flex;align-items:center;gap:5px;margin-bottom:3px">
+              <span style="font-size:11px;width:28px;text-align:right;color:var(--green);font-weight:600;flex-shrink:0">加壓</span>
+              <div style="flex:1;background:#e0e8e0;border-radius:2px;height:12px">
+                <div style="width:16.7%;background:var(--green);height:100%;border-radius:2px"></div>
+              </div>
+              <span style="font-size:11px;font-weight:700;color:var(--green);width:36px">16.7%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px">
+              <span style="font-size:11px;width:28px;text-align:right;color:#b03020;font-weight:600;flex-shrink:0">對照</span>
+              <div style="flex:1;background:#f0e0e0;border-radius:2px;height:12px">
+                <div style="width:38.9%;background:#c0392b;height:100%;border-radius:2px;opacity:0.8"></div>
+              </div>
+              <span style="font-size:11px;font-weight:700;color:#b03020;width:36px">38.9%</span>
+            </div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">RD = &#8722;22.2%</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
