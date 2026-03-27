@@ -854,14 +854,15 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
       <div style="text-align:center"><span class="dot dy"></span><br><span style="font-size:11px;color:var(--yellow)">Some Concerns</span></div>
       <div style="font-size:16px;color:var(--txt);line-height:1.5">全文無任何試驗事前公開登錄記錄；倫理審查通過（批准號 RMYY-LLKS-2022-054）無法替代試驗登錄的功能；多重結果指標（神經病變、睡眠、焦慮憂鬱）且未事前登錄，無法確認主要結果與次要結果是否於研究開始前即已指定</div>
     </div>
-    <div style="background:#FBF2E6;border:1px solid var(--acc);border-radius:3px;
-      padding:6px 14px;display:flex;align-items:center;gap:10px">
+    <div style="background:#FFEEEE;border:1px solid var(--red);border-radius:3px;
+      padding:6px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span style="font-size:16px;font-weight:600;color:var(--acc2)">整體判定：</span>
-      <span class="dot dy"></span>
-      <span style="font-size:16px;color:var(--yellow);font-weight:600">Some Concerns</span>
+      <span class="dot dr"></span>
+      <span style="font-size:16px;color:var(--red);font-weight:600">High Risk</span>
+      <span style="font-size:14px;color:var(--txt);margin-left:6px">五個 Domain 有四個判定為 Some Concerns，且疑慮間存在系統性連動，累積效應降低對研究結果的信心</span>
     </div>
   </div>
-  <div style="background:#F5F5F0;border-top:2px solid var(--yellow);padding:5px 12px;border-radius:3px;margin-top:2px;font-size:14px;line-height:1.8">
+  <div style="background:#F5F5F0;border-top:2px solid var(--red);padding:5px 12px;border-radius:3px;margin-top:2px;font-size:14px;line-height:1.8">
     <span style="font-weight:700;color:var(--acc2)">量表縮寫：</span> <strong>NCI-CTC v4.0</strong> = National Cancer Institute Common Toxicity Criteria（美國國家癌症研究院毒性評估標準）；≥ Grade 2 = 臨床顯著神經毒性　｜ <strong>PSQI</strong> = Pittsburgh Sleep Quality Index（匹茲堡睡眠品質量表）；≥ 5 分 = 睡眠品質差　｜ <strong>HADS</strong> = Hospital Anxiety and Depression Scale（醫院焦慮憂鬱量表）；≥ 8 分 = 臨床顯著焦慮或憂鬱
   </div>
   <div class="prog"></div><div class="pn"></div>
@@ -1190,23 +1191,88 @@ async function dlPDF(){
     if(!window.html2canvas) await loadLib('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
     if(!window.jspdf)        await loadLib('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
   }catch(e){btn.textContent='載入失敗（需網路）';btn.disabled=false;return;}
+
   const deck=document.getElementById('deck'),dw=document.getElementById('dw');
   const savedCur=cur,savedTr=deck.style.transform,savedW=dw.style.width,savedH=dw.style.height;
-  deck.style.transform='scale(1)';dw.style.width='1280px';dw.style.height='720px';
+  deck.style.transform='scale(1)';
+  dw.style.width='1280px';
+  dw.style.height='auto';
+  deck.style.overflow='visible';
+
   const {jsPDF}=window.jspdf;
-  const pdf=new jsPDF({orientation:'landscape',unit:'px',format:[1280,720]});
+  const W=1280;
+  let pdf=null;
+
   for(let i=0;i<N;i++){
     slides.forEach(s=>s.classList.remove('active'));
-    slides[i].classList.add('active');
+    const slide=slides[i];
+    slide.classList.add('active');
     btn.textContent='生成中 '+(i+1)+'/'+N+'…';
-    await new Promise(r=>setTimeout(r,180));
-    const c=await html2canvas(deck,{scale:2,useCORS:true,allowTaint:true,logging:false,width:1280,height:720});
-    if(i>0)pdf.addPage([1280,720],'landscape');
-    pdf.addImage(c.toDataURL('image/jpeg',0.95),'JPEG',0,0,1280,720);
+
+    // 先還原到基準高度，測量內容高度
+    deck.style.height='720px';
+    slide.style.overflowY='auto';
+    await new Promise(r=>setTimeout(r,140));
+
+    // 計算需要的高度：slide 本身 + 內部可捲動元素
+    let fullH=Math.max(720,slide.scrollHeight);
+    const deckTop=deck.getBoundingClientRect().top;
+    const innerScrollables=[];
+
+    slide.querySelectorAll('*').forEach(el=>{
+      const cs=window.getComputedStyle(el);
+      const hasScroll=(cs.overflowY==='auto'||cs.overflowY==='scroll'||cs.overflow==='auto'||cs.overflow==='scroll');
+      if(hasScroll && el.scrollHeight>el.clientHeight+4){
+        const elTop=el.getBoundingClientRect().top-deckTop;
+        fullH=Math.max(fullH,Math.ceil(elTop+el.scrollHeight+24));
+        innerScrollables.push({el,savedOv:el.style.overflow,savedOvy:el.style.overflowY,savedH:el.style.height,savedMH:el.style.maxHeight});
+      }
+    });
+
+    // 展開 deck 至完整高度
+    deck.style.height=fullH+'px';
+    slide.style.overflowY='visible';
+
+    // 展開內部可捲動元素
+    innerScrollables.forEach(({el})=>{
+      el.style.overflow='visible';
+      el.style.overflowY='visible';
+      el.style.maxHeight='none';
+      el.style.height=el.scrollHeight+'px';
+    });
+
+    await new Promise(r=>setTimeout(r,200));
+
+    // 擷取完整頁面
+    const c=await html2canvas(deck,{scale:2,useCORS:true,allowTaint:true,logging:false,width:W,height:fullH,windowWidth:1280,windowHeight:fullH});
+
+    if(!pdf){
+      pdf=new jsPDF({orientation:'landscape',unit:'px',format:[W,fullH]});
+    }else{
+      pdf.addPage([W,fullH],'landscape');
+    }
+    pdf.addImage(c.toDataURL('image/jpeg',0.95),'JPEG',0,0,W,fullH);
+
+    // 還原此 slide 的設定
+    slide.style.overflowY='';
+    innerScrollables.forEach(({el,savedOv,savedOvy,savedH,savedMH})=>{
+      el.style.overflow=savedOv;
+      el.style.overflowY=savedOvy;
+      el.style.height=savedH;
+      el.style.maxHeight=savedMH;
+    });
+    deck.style.height='720px';
   }
-  deck.style.transform=savedTr;dw.style.width=savedW;dw.style.height=savedH;
+
+  // 全部還原
+  deck.style.transform=savedTr;
+  deck.style.overflow='';
+  deck.style.height='720px';
+  dw.style.width=savedW;
+  dw.style.height=savedH;
   slides.forEach(s=>s.classList.remove('active'));
-  slides[savedCur].classList.add('active');updateProgress();
+  slides[savedCur].classList.add('active');
+  updateProgress();
   pdf.save('CIPN_slides.pdf');
   btn.textContent='⬇ PDF';btn.disabled=false;
 }
