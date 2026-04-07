@@ -80,6 +80,12 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
 .hl3{color:var(--green);font-weight:600}
 .sep{border:none;border-top:1px solid var(--line);margin:8px 0}
 .cite{font-size:15px;color:var(--muted);font-style:italic}
+.warn{background:#FFF8EC;border-left:3px solid var(--yellow);padding:5px 10px;border-radius:2px;font-size:15px;color:var(--acc2);line-height:1.55}
+.tag-ev{display:inline-block;background:var(--green);color:#fff;font-size:12px;padding:1px 7px;border-radius:2px;font-weight:600;vertical-align:middle}
+.tag-weak{display:inline-block;background:var(--yellow);color:#fff;font-size:12px;padding:1px 7px;border-radius:2px;font-weight:600;vertical-align:middle}
+.step{display:flex;align-items:flex-start;gap:10px;padding:5px 0}
+.step-num{flex-shrink:0;width:26px;height:26px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;margin-top:1px}
+.step-txt{font-size:16px;color:var(--txt);line-height:1.55}
 </style>
 </head>
 <body>
@@ -228,9 +234,9 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
   <div class="rule" style="margin:4px 0 8px"></div>
 
   <!-- 上：DynaMed 截圖 -->
-  <div style="flex:0 0 57%;min-height:0;overflow:hidden;display:flex;justify-content:center;align-items:center">
-    <img src="初級搜尋dynamad.png"
-         style="height:100%;width:auto;object-fit:contain;object-position:center center">
+  <div style="flex:0 0 57%;min-height:0;overflow:hidden;background:white;border-radius:4px;position:relative">
+    <img src="初級搜尋DynaMed.png"
+         style="position:absolute;top:-45px;left:50%;transform:translateX(-50%);height:calc(100% + 55px);width:auto;object-fit:contain">
   </div>
 
   <!-- 下：三欄機轉卡片 -->
@@ -256,7 +262,7 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
     </div>
 
     <div style="background:#F0F8F0;border-left:4px solid var(--green);border-radius:4px;padding:7px 12px;display:flex;flex-direction:column;gap:2px">
-      <div style="font-size:22px;font-weight:700;color:#356035">🧤 壓迫治療</div>
+      <div style="font-size:22px;font-weight:700;color:#356035">🧤 加壓治療</div>
       <div style="font-size:12px;color:var(--muted);margin-bottom:1px">化療輸注當下</div>
       <div style="font-size:20px;color:var(--txt);line-height:1.55">
         機械加壓 → 血管阻斷<br>
@@ -372,53 +378,110 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
   <div class="badge">❷ Acquire</div>
   <div class="h1">PRISMA 2020　文獻篩選流程</div>
   <div class="rule"></div>
-  <div style="flex:1;display:flex;gap:18px">
-    <div style="flex:0 0 52%;display:flex;flex-direction:column;gap:0">
-      <div class="fb main" style="padding:11px 14px;text-align:left">
-        <div style="font-size:16px;font-weight:600;color:var(--acc);margin-bottom:3px">■ 識別（Identification）</div>
-        <div style="font-size:24px;font-weight:700;color:var(--dark)">資料庫搜尋：n = 142</div>
-        <div style="font-size:16px;color:var(--muted);margin-top:2px">PubMed 33 篇・CINAHL 3 篇・Cochrane Library 106 篇</div>
+  <!-- 頂端提示列 -->
+  <div style="background:#EAE4DA;border:1px solid var(--line);border-radius:3px;padding:5px 14px;font-size:16px;color:var(--acc2);font-weight:600;margin-bottom:8px;text-align:center">
+    綜合各電子資料庫，依搜尋策略及限制條件檢索研究
+  </div>
+  <!-- 主體：PRISMA 2020 三欄式 — 標籤 + 主流程 + 排除框 -->
+  <!-- 對照參考圖：↓ 置中於主流程框正下方；→ 位於主流程框右側、排除框左側（兩者 X 位置不同） -->
+  <!-- 統一寬度：標籤 62 + gap 8 + main flex:1 + gap 8 + 排除框 420 -->
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:3px;min-height:0">
+
+    <!-- ══ Identification 識別 ══ -->
+    <div style="display:flex;align-items:stretch;gap:8px">
+      <!-- 標籤 -->
+      <div style="width:62px;flex-shrink:0;background:#9DC3E6;border:1px solid #2E75B6;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px">
+        <div style="font-size:15px;font-weight:700;color:#0B2D52">檢索</div>
+        <div style="font-size:10px;color:#143E66;font-style:italic">Identification</div>
       </div>
-      <div style="display:flex;justify-content:center;padding:3px 0;font-size:22px;color:var(--acc)">↓</div>
-      <div class="fb main" style="padding:11px 14px;text-align:left">
-        <div style="font-size:16px;font-weight:600;color:var(--acc);margin-bottom:3px">■ 篩選（Screening）</div>
-        <div style="font-size:24px;font-weight:700;color:var(--dark)">標題摘要篩選：n = 119</div>
+      <!-- 主流程框 -->
+      <div class="fb main" style="flex:1;padding:8px 14px;text-align:left">
+        <div style="font-size:17px;font-weight:700;color:var(--dark)">檢索文獻標題或摘要來自 PubMed、CINAHL、Cochrane Library 資料庫 (n = 142)</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:2px">PubMed 33・CINAHL 3・Cochrane Library 106</div>
       </div>
-      <div style="display:flex;justify-content:center;padding:3px 0;font-size:22px;color:var(--acc)">↓</div>
-      <div class="fb main" style="padding:11px 14px;text-align:left">
-        <div style="font-size:16px;font-weight:600;color:var(--acc);margin-bottom:3px">■ 全文閱讀（Eligibility）</div>
-        <div style="font-size:24px;font-weight:700;color:var(--dark)">全文評讀：n = 23</div>
-      </div>
-      <div style="display:flex;justify-content:center;padding:3px 0;font-size:22px;color:var(--acc)">↓</div>
-      <div class="fb main" style="padding:11px 14px;text-align:left;border-color:var(--green)">
-        <div style="font-size:16px;font-weight:600;color:var(--green);margin-bottom:3px">✓ 最終納入（Included）</div>
-        <div style="font-size:24px;font-weight:700;color:var(--dark)">n = 3</div>
-        <div style="font-size:16px;color:var(--muted);margin-top:2px">SR + Meta-analysis × 1　・　RCT × 2</div>
-      </div>
-    </div>
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:6px">
-      <div style="display:flex;align-items:flex-start;gap:8px">
-        <div style="font-size:20px;color:var(--acc);margin-top:6px">→</div>
-        <div class="fb ex" style="flex:1;text-align:left;padding:8px 10px">
-          <div style="font-weight:600;margin-bottom:3px">排除重複</div>
-          <div style="font-weight:700;font-size:20px">n = 23</div>
-        </div>
-      </div>
-      <div style="display:flex;align-items:flex-start;gap:8px">
-        <div style="font-size:20px;color:var(--acc);margin-top:6px">→</div>
-        <div class="fb ex" style="flex:1;text-align:left;padding:8px 10px">
-          <div style="font-weight:600;margin-bottom:3px">排除（Screening）n = 96</div>
-          <div style="font-size:16px">・非單純加壓治療（n = 9）<br>・非 SR / RCT 研究設計（n = 42）<br>・PICO 主題不符（n = 45）</div>
-        </div>
-      </div>
-      <div style="display:flex;align-items:flex-start;gap:8px">
-        <div style="font-size:20px;color:var(--acc);margin-top:6px">→</div>
-        <div class="fb ex" style="flex:1;text-align:left;padding:8px 10px">
-          <div style="font-weight:600;margin-bottom:3px">排除（Eligibility）n = 20</div>
-          <div style="font-size:16px">・已被納入之 SR 收錄（n = 8）<br>・族群非紫杉醇化療藥物（n = 5）<br>・對照組不符合納入定義（n = 4）<br>・重複發表（n = 3）</div>
+      <!-- 右欄：→ + 排除框 -->
+      <div style="width:420px;flex-shrink:0;display:flex;align-items:center;gap:6px">
+        <div style="width:24px;flex-shrink:0;text-align:center;font-size:24px;color:var(--acc);line-height:1;font-weight:700">→</div>
+        <div class="fb ex" style="flex:1;text-align:left;padding:9px 14px">
+          <div style="font-weight:700;font-size:16px;margin-bottom:3px;color:var(--acc2)">篩選前刪除文獻：</div>
+          <div style="font-size:14px;line-height:1.55">・刪除重複文獻 (n = 23)</div>
         </div>
       </div>
     </div>
+
+    <!-- ↓ 外部箭頭（置中於主流程框下方） -->
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="width:62px;flex-shrink:0"></div>
+      <div style="flex:1;text-align:center;font-size:24px;color:var(--acc);line-height:1;font-weight:700">↓</div>
+      <div style="width:420px;flex-shrink:0"></div>
+    </div>
+
+    <!-- ══ Screening 篩選（PRISMA 2020 將原 Screening + Eligibility 合併） ══ -->
+    <div style="display:flex;align-items:stretch;gap:8px;flex:1;min-height:0">
+      <!-- 篩選標籤（跨二列） -->
+      <div style="width:62px;flex-shrink:0;background:#9DC3E6;border:1px solid #2E75B6;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px">
+        <div style="font-size:15px;font-weight:700;color:#0B2D52">篩選</div>
+        <div style="font-size:10px;color:#143E66;font-style:italic">Screening</div>
+      </div>
+      <!-- 三列流程容器 -->
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:2px;min-width:0">
+        <!-- 第 1 列：依標題或摘要篩選文獻 → 排除的記錄 -->
+        <div style="display:flex;align-items:stretch;gap:8px">
+          <div class="fb main" style="flex:1;padding:7px 14px;text-align:left">
+            <div style="font-size:17px;font-weight:700;color:var(--dark)">依標題或摘要篩選文獻 (n = 119)</div>
+          </div>
+          <div style="width:420px;flex-shrink:0;display:flex;align-items:center;gap:6px">
+            <div style="width:24px;flex-shrink:0;text-align:center;font-size:24px;color:var(--acc);line-height:1;font-weight:700">→</div>
+            <div class="fb ex" style="flex:1;text-align:left;padding:9px 14px">
+              <div style="font-weight:700;font-size:16px;margin-bottom:3px;color:var(--acc2)">經自動或手動排除文獻 (n = 96)</div>
+              <div style="font-size:14px;line-height:1.55">・介入措施無法單獨評估加壓治療的效果 (n = 9)<br>・非 SR / RCT 研究設計 (n = 42)<br>・PICO 主題不符 (n = 45)</div>
+            </div>
+          </div>
+        </div>
+        <!-- ↓ 內部箭頭（置中於主流程框下方） -->
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="flex:1;text-align:center;font-size:24px;color:var(--acc);line-height:1;font-weight:700">↓</div>
+          <div style="width:420px;flex-shrink:0"></div>
+        </div>
+        <!-- 第 2 列：檢視全文 → 排除之報告 -->
+        <div style="display:flex;align-items:stretch;gap:8px">
+          <div class="fb main" style="flex:1;padding:7px 14px;text-align:left">
+            <div style="font-size:17px;font-weight:700;color:var(--dark)">檢視全文 (n = 23)</div>
+          </div>
+          <div style="width:420px;flex-shrink:0;display:flex;align-items:center;gap:6px">
+            <div style="width:24px;flex-shrink:0;text-align:center;font-size:24px;color:var(--acc);line-height:1;font-weight:700">→</div>
+            <div class="fb ex" style="flex:1;text-align:left;padding:9px 14px">
+              <div style="font-weight:700;font-size:16px;margin-bottom:3px;color:var(--acc2)">排除不符的文章 (n = 20)</div>
+              <div style="font-size:14px;line-height:1.55">・已被 SR 收錄 (n = 8)<br>・族群非紫杉醇化療 (n = 5)<br>・對照組非常規治療 (n = 4)<br>・重複發表 (n = 3)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ↓ 外部箭頭 -->
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="width:62px;flex-shrink:0"></div>
+      <div style="flex:1;text-align:center;font-size:24px;color:var(--acc);line-height:1;font-weight:700">↓</div>
+      <div style="width:420px;flex-shrink:0"></div>
+    </div>
+
+    <!-- ══ Included 納入 ══ -->
+    <div style="display:flex;align-items:stretch;gap:8px">
+      <!-- 標籤 -->
+      <div style="width:62px;flex-shrink:0;background:#9DC3E6;border:1px solid #2E75B6;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px">
+        <div style="font-size:15px;font-weight:700;color:#0B2D52">納入</div>
+        <div style="font-size:10px;color:#143E66;font-style:italic">Included</div>
+      </div>
+      <!-- 主流程框（綠框） -->
+      <div class="fb main" style="flex:1;padding:8px 14px;text-align:left;border-color:var(--green)">
+        <div style="font-size:17px;font-weight:700;color:var(--dark)">納入回顧之研究 (n = 3)</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:2px">SR + Meta-analysis × 1　・　RCT × 2</div>
+      </div>
+      <!-- 右欄占位 -->
+      <div style="width:420px;flex-shrink:0"></div>
+    </div>
+
   </div>
   <div class="prog"></div><div class="pn"></div>
 </div>
@@ -428,69 +491,109 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
 ══════════════════════════════════ -->
 <div class="slide">
   <div class="badge">❷ Acquire</div>
-  <div class="h1">納入文獻 PICO 概覽</div>
+  <div class="h1">三篇文獻壓迫治療介入與壓力測量比較</div>
   <div class="rule"></div>
   <div style="flex:1;overflow:auto">
-    <table class="tbl" style="font-size:18px;width:100%">
+    <table class="tbl" style="font-size:18px;width:100%;line-height:1.35">
       <thead>
         <tr>
-          <th style="width:16%">文獻</th>
-          <th style="width:16%">P（族群）</th>
-          <th style="width:22%">I（介入）</th>
-          <th style="width:14%">C（對照）</th>
-          <th style="width:20%">O（結果）</th>
-          <th style="width:12%">設計 / N</th>
+          <th style="width:14%;padding:6px 10px">比較面向</th>
+          <th style="width:27%;padding:6px 10px">Michel et al. (POLAR)</th>
+          <th style="width:27%;padding:6px 10px">Yu et al.</th>
+          <th style="width:32%;padding:6px 10px">Hu et al. (Meta-analysis)</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>Hu et al. (2025)</strong><br>
-            <span style="font-style:italic;font-size:16px;color:var(--muted)">Supportive Care in Cancer</span><br>
-            <span class="tag" style="font-size:14px;margin-top:3px;display:inline-block">SR + Meta</span></td>
-          <td>接受紫杉醇類化療之癌症病人</td>
-          <td>各式加壓裝置<br>（外科手套、壓力襪、彈力繃帶）</td>
-          <td>常規護理</td>
-          <td>CIPN 發生率（CTCAE ≥ Grade 2）<br>感覺・運動神經病變<br>CIPNAT 分數</td>
-          <td>SR + Meta<br>N = 533<br>（7 RCTs）</td>
+          <td style="padding:5px 10px"><strong>研究國家</strong></td>
+          <td style="padding:5px 10px">德國</td>
+          <td style="padding:5px 10px">中國</td>
+          <td style="padding:5px 10px">中國、日本、美國（納入研究）</td>
         </tr>
         <tr>
-          <td><strong>Michel et al. (2025)</strong><br>
-            <span style="font-style:italic;font-size:16px;color:var(--muted)">JAMA Oncology<br>（POLAR Trial）</span><br>
-            <span class="tag" style="background:var(--acc2);font-size:14px;margin-top:3px;display:inline-block">前瞻 RCT</span></td>
-          <td>乳癌女性<br>接受每週 paclitaxel 80–90 mg/m² 或<br>nab-paclitaxel 125 mg/m²</td>
-          <td><span class="hl">壓力手套</span>（小一號外科手套，約 30–48 mmHg）<br>vs 冷凍手套（–20°C）<br>自身對照：慣用手介入 / 非慣用手對照</td>
-          <td>非慣用手（自身對照）<br>未施行任何介入</td>
-          <td>Grade ≥2 CIPN（CTCAE v5）<br>EORTC QLQ-CIPN20<br>TNSc（臨床版）</td>
-          <td>前瞻 RCT<br>n = 101<br>（可分析）</td>
+          <td style="padding:5px 10px"><strong>研究設計</strong></td>
+          <td style="padding:5px 10px">RCT，自我對照</td>
+          <td style="padding:5px 10px">RCT，三臂</td>
+          <td style="padding:5px 10px">SR + Meta-analysis（4 RCT + 3 準實驗）</td>
         </tr>
         <tr>
-          <td><strong>Yu et al. (2025)</strong><br>
-            <span style="font-style:italic;font-size:16px;color:var(--muted)">Supportive Care in Cancer</span><br>
-            <span class="tag" style="background:var(--green);font-size:14px;margin-top:3px;display:inline-block">三臂 RCT</span></td>
-          <td>乳癌<br>接受 nab-paclitaxel 250 mg/m²<br>年齡 ≥18 歲</td>
-          <td><span class="hl">外科手套（30–48 mmHg）</span> + 中小腿彈力壓力襪<br>化療前後各 30 分鐘，全程共 90 分鐘<br>± EXCAP 漸進式有氧/阻力運動</td>
-          <td>常規護理<br>（衛教）</td>
-          <td>NCI-CTC v4.0 感覺/運動分級<br>PSQI（睡眠）<br>HADS（焦慮/憂鬱）</td>
-          <td>三臂 RCT<br>n = 108<br>（36/arm）</td>
+          <td style="padding:5px 10px"><strong>個案數</strong></td>
+          <td style="padding:5px 10px">隨機分配 122 人；完成分析 101 人<br>（冷卻組 52 人、壓迫組 49 人）</td>
+          <td style="padding:5px 10px">納入 120 人；完成 108 人（各組 36 人）</td>
+          <td style="padding:5px 10px">共 533 人（實驗組 266 人、對照組 267 人）</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 10px"><strong>對象</strong></td>
+          <td style="padding:5px 10px">原發性乳癌女性</td>
+          <td style="padding:5px 10px">乳癌（已發生 CIPN）</td>
+          <td style="padding:5px 10px">乳癌為主（1 篇非小細胞肺癌）</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 10px"><strong>化療藥物</strong></td>
+          <td style="padding:5px 10px">nab-paclitaxel 或<br>solvent-based paclitaxel</td>
+          <td style="padding:5px 10px">nab-paclitaxel</td>
+          <td style="padding:5px 10px">所有納入研究均為紫杉醇類</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 10px"><strong>壓迫器材（手部）</strong></td>
+          <td style="padding:5px 10px">外科手套一副（小一號）</td>
+          <td style="padding:5px 10px">外科手套一副（小一號）</td>
+          <td style="padding:5px 10px">各研究不同，以外科手套一至兩副（小一號）為主</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 10px"><strong>壓迫器材（足部）</strong></td>
+          <td style="padding:5px 10px"><span style="color:var(--red);font-weight:700">❌</span> 無</td>
+          <td style="padding:5px 10px">醫用彈性繃帶＋第三級壓力小腿壓力襪</td>
+          <td style="padding:5px 10px">部分研究有壓力襪，部分無</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 10px"><strong>介入部位</strong></td>
+          <td style="padding:5px 10px">僅慣用手（另一手為對照）</td>
+          <td style="padding:5px 10px">雙手＋雙腳</td>
+          <td style="padding:5px 10px">多數雙手，部分加下肢</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 10px"><strong>介入時間</strong></td>
+          <td style="padding:5px 10px">輸注前後各 30 分鐘＋全程</td>
+          <td style="padding:5px 10px">輸注前後各 30 分鐘＋全程（共 90 分鐘）</td>
+          <td style="padding:5px 10px">各研究 15–30 分鐘前至輸注後 30 分鐘</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 10px"><strong>介入療程</strong></td>
+          <td style="padding:5px 10px">每次化療均執行</td>
+          <td style="padding:5px 10px">共 5 個療程</td>
+          <td style="padding:5px 10px">12–18 週（4–6 個療程）</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 10px"><strong>測量壓力工具</strong></td>
+          <td style="padding:5px 10px"><span style="color:var(--red);font-weight:700">❌</span> 未使用</td>
+          <td style="padding:5px 10px">德國精密壓力測量儀</td>
+          <td style="padding:5px 10px">各研究未統一說明</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 10px"><strong>量化壓力</strong></td>
+          <td style="padding:5px 10px"><span style="color:var(--red);font-weight:700">❌</span> 無數值</td>
+          <td style="padding:5px 10px">手部 30–48 mmHg（第三級）</td>
+          <td style="padding:5px 10px">有量化者：20–32 mmHg；多數未量化</td>
         </tr>
       </tbody>
     </table>
   </div>
   <!-- Assessment timepoints for RCTs -->
-  <div style="background:var(--card);border-radius:3px;padding:7px 12px;margin-top:6px;font-size:14px">
-    <div style="font-weight:700;color:var(--acc2);margin-bottom:4px">各 RCT 評估時間點</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+  <div style="background:var(--card);border-radius:3px;padding:8px 14px;margin-top:8px;font-size:16px">
+    <div style="font-weight:700;color:var(--acc2);margin-bottom:5px;font-size:17px">各 RCT 評估時間點</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
       <div>
-        <div style="font-weight:600;color:var(--dark);margin-bottom:2px">Michel et al. (2025)</div>
-        <div style="color:var(--dark)">
+        <div style="font-weight:600;color:var(--dark);margin-bottom:3px">Michel et al. (2025)</div>
+        <div style="color:var(--dark);line-height:1.45">
           ① <strong>CTCAE + EORTC QLQ-CIPN20</strong>：<span style="color:var(--acc)">每週紀錄一次</span><br>
           ② <strong>TNSc</strong>：化療開始前（基線）／治療中期／治療結束時／追蹤期，共 4 個時間點<br>
           ③ <strong>追蹤期</strong>：最後一次化療後 <span style="color:var(--acc)">第 1 週、第 1 個月、第 6–8 個月</span>
         </div>
       </div>
       <div>
-        <div style="font-weight:600;color:var(--dark);margin-bottom:2px">Yu et al. (2025)</div>
-        <div style="color:var(--dark)">
+        <div style="font-weight:600;color:var(--dark);margin-bottom:3px">Yu et al. (2025)</div>
+        <div style="color:var(--dark);line-height:1.45">
           ① <strong>NCI-CTC / PSQI / HADS</strong>：化療前（T0）開始評估<br>
           ② <strong>每一個 cycle 完成後</strong>評估一次，共進行 4 個 cycles<br>
           ③ <strong>追蹤期</strong>：最後一次化療後 <span style="color:var(--acc)">第 6 個月</span>再次評估
@@ -628,18 +731,7 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
         <div style="font-size:16px;color:var(--muted)">2024 SR Checklist</div>
       </div>
       <div class="ct" style="margin-bottom:4px">適用文獻</div>
-      <div class="cb" style="margin-bottom:7px"><strong>Hu et al. (2025)</strong>　系統性回顧暨統合分析（SR of RCTs）</div>
-      <div class="ct" style="margin-bottom:4px">評讀架構</div>
-      <div class="cb" style="font-size:15px;line-height:1.55">
-        Q1　研究問題明確性　<span style="font-size:12px;color:var(--muted)">Clearly focused question</span><br>
-        Q2　納入研究設計適切性　<span style="font-size:12px;color:var(--muted)">Appropriate study designs</span><br>
-        Q3（3a–3d）　搜尋・篩選・選擇・摘要　<span style="font-size:12px;color:var(--muted)">Search, screen, select &amp; summarise</span><br>
-        Q4　研究品質評估　<span style="font-size:12px;color:var(--muted)">Methodological rigour</span><br>
-        Q5（5a–5b）　資料擷取與呈現　<span style="font-size:12px;color:var(--muted)">Data extraction &amp; presentation</span><br>
-        Q6（＋Q6.1、Q6.2）　統合分析合理性　<span style="font-size:12px;color:var(--muted)">Pooled results &amp; subgroup/meta-regression</span><br>
-        Q7　研究限制回報　<span style="font-size:12px;color:var(--muted)">Limitations reported</span><br>
-        Q8–Q10　效益、可應用性・臨床價值　<span style="font-size:12px;color:var(--muted)">Benefits, applicability &amp; value</span>
-      </div>
+      <div class="cb"><strong>Hu et al. (2025)</strong>　系統性回顧暨統合分析（SR of RCTs）</div>
     </div>
     <div style="background:var(--card);border-radius:4px;padding:22px">
       <div style="display:flex;align-items:baseline;gap:9px;margin-bottom:9px">
@@ -647,16 +739,8 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
         <div style="font-size:18px;color:var(--muted)">Cochrane Risk of Bias</div>
       </div>
       <div class="ct" style="margin-bottom:5px">適用文獻</div>
-      <div class="cb" style="margin-bottom:11px">
-        <strong>Michel et al. (2025)</strong> ・ <strong>Yu et al. (2025)</strong>　RCT × 2</div>
-      <div class="ct" style="margin-bottom:5px">五大 Domain</div>
       <div class="cb">
-        D1　隨機化過程（Randomization）<br>
-        D2　介入措施偏差（Deviations）<br>
-        D3　遺漏結果數據（Missing data）<br>
-        D4　結果評估方式（Measurement）<br>
-        D5　選擇性報告（Selective reporting）
-      </div>
+        <strong>Michel et al. (2025)</strong> ・ <strong>Yu et al. (2025)</strong>　RCT × 2</div>
     </div>
   </div>
   <div class="prog"></div>
@@ -681,110 +765,125 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
         </tr>
       </thead>
       <tbody>
-        <tr style="background:#EFF6EE">
-          <td colspan="4" style="padding:3px 8px;font-weight:700;color:var(--green);font-size:13px;border:1px solid #ccc">
-            段落 A：研究結果可信嗎？（Are the results of the review valid?）　Q1–Q7
+        <tr>
+          <td colspan="4" style="padding:4px 10px;font-weight:700;color:#fff;font-size:13px;border:1px solid #ccc;background:#2B579A">
+            Section A：系統性回顧的基本研究設計是否有效？　Q1–Q2
           </td>
         </tr>
         <tr>
           <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:var(--acc)">Q1</td>
           <td style="padding:4px 7px;border:1px solid #ccc">此系統性文獻回顧是否問了一個清楚、明確的問題？<br><span style="font-size:12px;color:var(--muted)">Did the systematic review address a clearly formulated research question?</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
           <td style="padding:4px 7px;border:1px solid #ccc">PICO主題明確：taxane 化療病人、加壓治療 vs 常規護理、CIPN 發生率與嚴重度、12–18 週；研究族群、介入與結果清晰呈現</td>
         </tr>
         <tr style="background:#fafaf8">
           <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:var(--acc)">Q2</td>
           <td style="padding:4px 7px;border:1px solid #ccc">研究者是否搜尋了適合回答研究問題的研究設計？<br><span style="font-size:12px;color:var(--muted)">Did the researchers search for appropriate study design(s) to answer the research question?</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
           <td style="padding:4px 7px;border:1px solid #ccc">治療型實證問題；納入 RCT（4篇）及類實驗研究（quasi-experimental，3篇），符合評估介入效果之最佳設計</td>
+        </tr>
+        <tr>
+          <td colspan="4" style="padding:4px 10px;font-weight:700;color:#fff;font-size:13px;border:1px solid #ccc;background:#C0504D">
+            Section B：系統性回顧的方法學是否嚴謹？　Q3–Q5
+          </td>
         </tr>
         <tr>
           <td style="text-align:center;padding:4px 3px;border:1px solid #ccc;font-weight:700;color:var(--acc);font-size:13px">Q3a</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px"><em style="color:var(--acc2)">搜尋策略：</em>是否已納入所有重要且相關的原始研究？<br><span style="font-size:11px;color:var(--muted)">Were all the relevant primary research studies likely to have been included? (Searching)</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#1a7a3a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#1a7a3a">✓ Yes</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">搜尋 9 個資料庫（含中英文）、MeSH + 自由詞、含非英語文獻、有搜灰色文獻和臨床試驗註冊、策略可重現。</td>
         </tr>
         <tr style="background:#fafaf8">
           <td style="text-align:center;padding:4px 3px;border:1px solid #ccc;font-weight:700;color:var(--acc);font-size:13px">Q3b</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px"><em style="color:var(--acc2)">篩選流程：</em>文獻篩選是否適當？<br><span style="font-size:11px;color:var(--muted)">Screening primary research studies from the search</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">兩位研究者獨立篩選，有疑義時由第三位研究者解決分歧；符合標準流程，並使用prisma流程圖呈現</td>
         </tr>
         <tr>
           <td style="text-align:center;padding:4px 3px;border:1px solid #ccc;font-weight:700;color:var(--acc);font-size:13px">Q3c</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px"><em style="color:var(--acc2)">選擇流程：</em>納入研究的選擇是否適當？<br><span style="font-size:11px;color:var(--muted)">Selecting primary research studies to include in the systematic review</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">明確納入／排除條件；雙人審查，第三人仲裁；惟未報告評讀者一致性（kappa），未明確說明 full-text 篩選流程</td>
         </tr>
         <tr style="background:#fafaf8">
           <td style="text-align:center;padding:4px 3px;border:1px solid #ccc;font-weight:700;color:var(--acc);font-size:13px">Q3d</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px"><em style="color:var(--acc2)">搜尋摘要：</em>是否清楚呈現搜尋流程與結果？<br><span style="font-size:11px;color:var(--muted)">Summarising the search and its outputs</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">提供 PRISMA flow diagram；初始 1,077 篇 → 最終納入 7 篇</td>
         </tr>
         <tr>
           <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:var(--acc)">Q4</td>
           <td style="padding:4px 7px;border:1px solid #ccc">系統性文獻回顧的作者是否確實評估所有納入研究之方法學品質？<br><span style="font-size:12px;color:var(--muted)">Did the researchers assess the validity or methodological rigour of the included studies?</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
           <td style="padding:4px 7px;border:1px solid #ccc">RCT 使用 ROB 2.0，類實驗使用 JBI 工具；雙人獨立評讀，爭議由第三方仲裁；高偏誤風險文章排除</td>
         </tr>
         <tr style="background:#fafaf8">
           <td style="text-align:center;padding:4px 3px;border:1px solid #ccc;font-weight:700;color:var(--acc);font-size:13px">Q5a</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px"><em style="color:var(--acc2)">資料擷取：</em>研究者是否適當地擷取資料？<br><span style="font-size:11px;color:var(--muted)">Did the researchers extract data appropriately?</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">雙人獨立資料萃取；涵蓋人口學、介入、結果等重要資料；惟未提及標準化表單（standardized form）</td>
         </tr>
         <tr>
           <td style="text-align:center;padding:4px 3px;border:1px solid #ccc;font-weight:700;color:var(--acc);font-size:13px">Q5b</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px"><em style="color:var(--acc2)">資料呈現：</em>研究者是否適當地呈現資料？<br><span style="font-size:11px;color:var(--muted)">Did the researchers present the data appropriately?</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">研究特徵 Table；Forest plot（統合結果）；提供 RR / MD / CI / p-value</td>
+        </tr>
+        <tr>
+          <td colspan="4" style="padding:4px 10px;font-weight:700;color:#fff;font-size:13px;border:1px solid #ccc;background:#4A7C59">
+            Section C：系統性回顧的結果是否可信？　Q6–Q7
+          </td>
         </tr>
         <tr style="background:#fafaf8">
           <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:var(--acc)">Q6</td>
           <td style="padding:4px 7px;border:1px solid #ccc">研究者是否適當地分析統合結果？<br><span style="font-size:12px;color:var(--muted)">Did the researchers analyse the pooled results appropriately?</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
           <td style="padding:4px 7px;border:1px solid #ccc">使用 RR / MD；I² 評估異質性；適當選擇 fixed/random effect model；sensitivity analysis；publication bias（Egger test）；主要結果：CTCAE ≥2 CIPN（RR=0.59，95%CI 0.43–0.81，I²=3%）</td>
         </tr>
         <tr>
           <td style="text-align:center;padding:4px 3px;border:1px solid #ccc;font-weight:700;color:var(--acc);font-size:13px">Q6.1</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px"><em style="color:var(--acc2)">次群組分析：</em>是否適當？<br><span style="font-size:11px;color:var(--muted)">Subgroup analysis</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#a07000">△ 不確定</td>
-          <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">有標示 predefined subgroup（CTCAE vs. PNQ），具臨床意義，並執行 test for subgroup differences（Chi² test）；惟未提供 protocol 登錄來源確認預先設定，且 PNQ 亞組僅納入 2 篇，結果可信度有限。</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
+          <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">依評估工具（CTCAE vs. PNQ）與介入部位（手 / 足）執行次群組分析，分組變項具臨床意義；並使用 Chi² test 檢驗 subgroup differences，方法學執行適當。</td>
         </tr>
         <tr style="background:#fafaf8">
           <td style="text-align:center;padding:4px 3px;border:1px solid #ccc;font-weight:700;color:var(--acc);font-size:13px">Q6.2</td>
           <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px"><em style="color:var(--acc2)">Meta-regression：</em>是否適當？<br><span style="font-size:11px;color:var(--muted)">Meta-regression</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#a07000">△ 不確定</td>
-          <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">未進行 meta-regression。存在多個潛在效果修飾因子（壓力大小、介入時間、研究設計、癌別），但未探索。不過僅 7 篇研究，meta-regression 統計檢力不足（建議至少 10 篇），未做可以理解</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
+          <td style="padding:3px 7px;border:1px solid #ccc;font-size:14px">本回顧僅納入 7 篇研究，未達 Cochrane Handbook 建議執行 meta-regression 之最低門檻（≥10 篇），統計檢力不足；故未進行 meta-regression 屬合理且適當的方法學判斷。</td>
         </tr>
         <tr>
           <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:var(--acc)">Q7</td>
           <td style="padding:4px 7px;border:1px solid #ccc">研究者是否報告了系統性文獻回顧的研究限制？<br><span style="font-size:12px;color:var(--muted)">Did the researchers report any limitations of the systematic review?</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
           <td style="padding:4px 7px;border:1px solid #ccc">明確報告：小樣本、偏誤風險（RoB）、外部效度限制（僅 taxane）、主觀量表使用</td>
         </tr>
-        <tr style="background:#FFF4EE">
-          <td colspan="4" style="padding:3px 8px;font-weight:700;color:#B85000;font-size:13px;border:1px solid #ccc">
-            段落 B：研究結果對於當地病人有幫助嗎？（Will the results help locally?）　Q8–Q10
+        <tr>
+          <td colspan="4" style="padding:4px 10px;font-weight:700;color:#fff;font-size:13px;border:1px solid #ccc;background:#2E7D7B">
+            Section D：介入效益是否大於潛在危害與資源需求？　Q8
           </td>
         </tr>
         <tr style="background:#fafaf8">
           <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:var(--acc)">Q8</td>
           <td style="padding:4px 7px;border:1px solid #ccc">介入措施的效益是否大於潛在的缺點、傷害或額外的資源負擔？<br><span style="font-size:12px;color:var(--muted)">Would the benefits of intervention outweigh any potential disadvantages, harms and/or additional demand for resources?</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
           <td style="padding:4px 7px;border:1px solid #ccc">顯著降低 CIPN 發生率；不良反應少（僅 1 例乳膠過敏）；加壓裝置低成本、易取得、可自行操作</td>
+        </tr>
+        <tr>
+          <td colspan="4" style="padding:4px 10px;font-weight:700;color:#fff;font-size:13px;border:1px solid #ccc;background:#5B4A8A">
+            Section E：結果是否適用於本地？實施是否帶來更大價值？　Q9–Q10
+          </td>
         </tr>
         <tr>
           <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:var(--acc)">Q9</td>
           <td style="padding:4px 7px;border:1px solid #ccc">此系統性文獻回顧的結果是否可應用於本地族群或情境？<br><span style="font-size:12px;color:var(--muted)">Can the results of the systematic review be applied to your local population/in your local setting or context?</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#a07000">△ 不確定</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#a07000">△ Can't Tell</td>
           <td style="padding:4px 7px;border:1px solid #ccc">僅限 paclitaxel-based 化療（多為乳癌）；台灣醫療情境與納入研究相近，惟不可直接外推至其他化療藥物</td>
         </tr>
         <tr style="background:#fafaf8">
           <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:var(--acc)">Q10</td>
           <td style="padding:4px 7px;border:1px solid #ccc">若付諸實踐，研究發現是否能為個人或族群帶來更大或額外的價值？<br><span style="font-size:12px;color:var(--muted)">If actioned, would the findings represent greater or additional value for the individuals or populations?</span></td>
-          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ 是</td>
+          <td style="text-align:center;padding:4px 4px;border:1px solid #ccc;font-weight:700;color:#2a7a2a">✓ Yes</td>
           <td style="padding:4px 7px;border:1px solid #ccc">高效益、低風險、低成本；可提升臨床護理品質；惟尚需更多高品質 RCT 驗證長期效益</td>
         </tr>
       </tbody>
@@ -1026,62 +1125,86 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
      SLIDE 14  執行計畫：詳細介入設計
 ══════════════════════════════════ -->
 <div class="slide">
+  <div class="aline" style="background:linear-gradient(to bottom,var(--green),#356035)"></div>
   <div class="badge green">✦ 執行計畫</div>
-  <div class="h1">臨床介入設計</div>
+  <div class="h1" style="font-size:34px">臨床應用計畫</div>
   <div class="rule" style="background:var(--green)"></div>
-  <div style="flex:1;display:flex;gap:16px">
-    <div style="flex:1;display:flex;flex-direction:column;gap:8px">
-      <div class="card" style="border-left-color:var(--green)">
-        <div class="ct">▸ 納入條件</div>
-        <div class="cb" style="font-size:18px">
-          · 確診癌症並接受 paclitaxel 或 nab-paclitaxel 化療<br>
-          <span class="cite">（Michel et al., 2025；Yu et al., 2025）</span><br>
-          · 年齡 ≥ 18 歲・自願參與<br>
-          · 無周邊神經病變病史（如糖尿病性神經病變等）
+
+  <div style="flex:1;display:flex;gap:16px;min-height:0">
+
+    <!-- 左欄 -->
+    <div style="flex:1.05;display:flex;flex-direction:column;gap:9px">
+
+      <!-- 適用族群 -->
+      <div class="card" style="border-left-color:var(--green);padding:8px 13px">
+        <div class="ct" style="font-size:19px">▸ 適用族群</div>
+        <div class="cb" style="font-size:17px;line-height:1.6">
+          <span class="hl3">納入：</span>接受 paclitaxel / nab-paclitaxel 化療、年齡 ≥ 18 歲、無周邊神經病變病史<br>
+          <span class="hl2">排除：</span>乳膠過敏、重要器官轉移、既有周邊神經病變、使用 SNRIs 或抗憂鬱劑<br>
+          <span class="cite">⚠ 現有證據以乳癌女性、紫杉醇類為主，不宜直接外推至其他癌別或化療藥物（Hu et al., 2025）</span>
         </div>
       </div>
-      <div class="card" style="border-left-color:var(--red)">
-        <div class="ct">▸ 排除條件</div>
-        <div class="cb" style="font-size:18px">
-          · 乳膠過敏史<br>
-          · 重要器官轉移・周邊神經病變・曾接受神經毒性化療<br>
-          · 正在使用 <strong>SNRIs 或抗憂鬱劑</strong><br>
-          <span class="cite">（Michel et al., 2025）</span><br>
-          <span class="cite" style="font-size:14px;display:block;margin-top:2px">
-          ＊SNRIs（如 duloxetine）具輕度止痛作用，可能掩蓋加壓治療對 CIPN 的實際效果</span>
+
+      <!-- 介入措施 -->
+      <div class="card" style="border-left-color:var(--acc);padding:8px 13px">
+        <div class="ct" style="font-size:19px">▸ 介入措施（僅手部）<span class="tag-ev" style="margin-left:6px">3 篇一致</span></div>
+        <div class="cb" style="font-size:17px;line-height:1.6">
+          手部穿戴<span class="hl">小一號外科手套</span>（若乳膠過敏改用無乳膠材質）<br>
+          化療輸注<span class="hl">前 30 分鐘</span>穿戴 → <span class="hl">全程持續</span> → 輸注後 <span class="hl">30 分鐘</span>移除（共約 90 分鐘）
+          <span class="cite">（Michel et al., 2025；Hu et al., 2025）</span>
         </div>
       </div>
-      <div class="card" style="border-left-color:var(--acc)">
-        <div class="ct">▸ 介入材料</div>
-        <div class="cb" style="font-size:18px">
-          · 手部：<span class="hl">小一號外科手套（30–48 mmHg）</span><br>
-          <span class="cite">（Michel et al., 2025；Yu et al., 2025）</span><br>
-          · 足部：<span class="hl">壓力等級 3（30–48 mmHg）中小腿彈力壓力襪</span><br>
-          <span class="cite">（Yu et al., 2025）</span>
-        </div>
+
+      <!-- 足部排除說明 -->
+      <div class="warn" style="font-size:16px">
+        <strong>▸ 足部介入不納入本計畫之理由</strong><br>
+        足部壓迫僅 Yu et al.（2025）單篇支持（ROB 2.0 High Risk），且該研究手足同時介入並合併運動療法，<strong>無法獨立拆解足部壓迫之效果</strong>；Hu et al.（2025）統合分析亦以手部介入為主要依據，不支持足部外推。俟未來有獨立設計之高品質 RCT 再評估。
       </div>
+
     </div>
-    <div style="flex:1;display:flex;flex-direction:column;gap:8px">
-      <div class="card" style="border-left-color:var(--acc2)">
-        <div class="ct">▸ 介入流程與時間 / 頻次</div>
-        <div class="cb" style="font-size:18px">
-          ① 化療輸注 <span class="hl">前 30 分鐘</span>穿戴手套與壓力襪<br>
-          ② 整個輸注過程中<span class="hl">持續穿戴</span><br>
-          ③ 輸注完成後繼續 <span class="hl">30 分鐘</span>再移除（每次共 ≈ 90 分鐘）<br>
-          <span class="cite">（Michel et al., 2025；Yu et al., 2025）</span><br>
-          → <strong>每個化療週期（cycle）</strong>均重複執行
+
+    <!-- 右欄 -->
+    <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+
+      <!-- 執行流程 -->
+      <div class="card" style="border-left-color:var(--acc2);padding:8px 13px">
+        <div class="ct" style="font-size:19px">▸ 執行流程</div>
+        <div style="margin-top:4px">
+          <div class="step">
+            <div class="step-num" style="width:28px;height:28px;font-size:15px">1</div>
+            <div class="step-txt" style="font-size:17px">
+              <strong>基準評估（T0）</strong>：化療第一次輸注前，護理師以 CTCAE v5 評估感覺及運動神經病變基準分級，確認符合納入條件後登錄
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num" style="width:28px;height:28px;font-size:15px">2</div>
+            <div class="step-txt" style="font-size:17px">
+              <strong>介入執行（每次化療）</strong>：護理師協助病人於輸注前 30 分鐘穿戴手套，輸注全程持續穿戴，輸注結束後 30 分鐘移除；每個化療週期均重複執行，介入期間共 <span class="hl">12 週（4 cycles × 3 週）</span>
+              <span class="cite">（Hu et al., 2025）</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num" style="width:28px;height:28px;font-size:15px">3</div>
+            <div class="step-txt" style="font-size:17px">
+              <strong>追蹤評估</strong>：每次化療輸注前評估 CTCAE 分級；最後一次化療結束後 <span class="hl">1 個月及 6 個月</span>各執行一次追蹤評估
+            </div>
+          </div>
         </div>
       </div>
-      <div class="card" style="border-left-color:var(--green)">
-        <div class="ct">▸ 主要結果測量</div>
-        <div class="cb" style="font-size:16px">
-          <strong>主要結果指標</strong>：<span class="hl">CTCAE 感覺 / 運動神經病變分級</span>（0–5 級）<br>
-          <strong>Baseline（化療前 T0）</strong>：記錄 CTCAE Grade（確認基準值）<br>
-          <strong>每次化療輸注前</strong>：評估 CTCAE 感覺 / 運動分級<br>
-          <strong>每化學療程完成後</strong>：記錄 CTCAE Grade（主要結果時間點）<br>
-          <strong>追蹤期</strong>：最後一次化療後 <span class="hl">1 個月及 6 個月</span>再次評估
+
+      <!-- 結果指標 -->
+      <div class="card" style="border-left-color:var(--green);padding:8px 13px">
+        <div class="ct" style="font-size:19px">▸ 結果評估指標</div>
+        <div class="cb" style="font-size:17px;line-height:1.6">
+          採用 <span class="hl">CTCAE v5 感覺 / 運動神經病變分級</span>為主要結果指標<br>
+          <span style="font-size:15px;color:var(--muted)">
+            → 為本次三篇納入文獻共同採用之評估工具
+            <span class="cite">（Michel et al., 2025；Hu et al., 2025）</span>，
+            具明確臨床切點（Grade ≥ 2 = 影響日常活動，需臨床介入），便於跨研究比較與結果解讀
+          </span>
         </div>
       </div>
+
     </div>
   </div>
   <div class="prog"></div><div class="pn"></div>
@@ -1099,20 +1222,16 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
     <div class="g2" style="gap:12px">
       <div style="background:var(--card);border-radius:4px;padding:14px 16px;border-top:3px solid var(--acc)">
         <div style="font-size:14px;color:var(--acc);letter-spacing:.12em;font-weight:600;margin-bottom:5px">① 研究證據 RESEARCH EVIDENCE</div>
-        <div class="cb">三篇 Level 1 文獻一致支持：<br>
+        <div class="cb">三篇文獻（含一篇 Meta-analysis 及兩篇 RCT）結果一致支持：<br>
           加壓治療顯著降低 CIPN 發生率（<span class="hl">RR = 0.59，95%CI 0.43–0.81</span>，P = 0.001）
-          <span class="cite">（Hu et al., 2025）</span><br>
-          與冷凍療法可能有<span class="hl">相同效果</span>，且耐受性更佳
-          <span class="cite">（Michel et al., 2025）</span><br>
-          化療結束後<span class="hl">六個月仍有持續效果</span>（CIPN 發生率：加壓 16.7% vs 對照 38.9%）
-          <span class="cite">（Yu et al., 2025）</span>
+          <span class="cite">（Hu et al., 2025）</span>
         </div>
       </div>
       <div style="background:var(--card);border-radius:4px;padding:14px 16px;border-top:3px solid var(--acc2)">
         <div style="font-size:14px;color:var(--acc2);letter-spacing:.12em;font-weight:600;margin-bottom:5px">② 臨床指引 / 專家建議</div>
-        <div class="cb">ESMO 及 ASCO 指引均將冷凍療法列為 CIPN 預防選項
+        <div class="cb">ESMO 指引將冷凍治療（<span class="hl">II C</span>）及壓迫治療（<span class="hl">III C</span>）列為可考慮之非藥物預防選項
           <span class="cite">（Jordan et al., 2020）</span><br>
-          <strong>而加壓療法與冷凍療法效果相當</strong>，可作為<span class="hl"><strong>耐受性更佳</strong>的替代方案</span>
+          現有證據顯示加壓治療與冷凍治療之間<strong>未見統計顯著差異</strong>，且<span class="hl"><strong>耐受性更佳</strong></span>
           <span class="cite">（Michel et al., 2025）</span>
         </div>
       </div>
@@ -1120,7 +1239,6 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
         <div style="font-size:14px;color:var(--green);letter-spacing:.12em;font-weight:600;margin-bottom:5px">③ 病人期待 PATIENT VALUES</div>
         <div class="cb">冷凍療法中斷率高（因低溫不適）<br>
           加壓治療<span class="hl3">無低溫不適問題</span>，耐受性更佳<br>
-          病人接受度高、依從性強<span class="cite">（Michel et al., 2025）</span><br>
           外科手套取得方便，無需特殊設備
         </div>
       </div>
