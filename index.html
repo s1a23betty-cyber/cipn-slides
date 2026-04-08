@@ -1172,7 +1172,7 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
           <div class="step">
             <div class="step-num" style="width:28px;height:28px;font-size:15px">1</div>
             <div class="step-txt" style="font-size:17px">
-              <strong>基準評估（T0）</strong>：化療第一次輸注前，護理師以 CTCAE v5 評估感覺及運動神經病變基準分級，確認符合納入條件後登錄
+              <strong>基準評估（T0）</strong>：化療第一次輸注前，護理師以 <span class="hl">CTCAE v5</span> 評估感覺及運動神經病變基準分級，並以 <span class="hl">128 Hz 音叉</span>測試雙手指尖震動覺，確認符合納入條件後登錄
             </div>
           </div>
           <div class="step">
@@ -1185,7 +1185,7 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
           <div class="step">
             <div class="step-num" style="width:28px;height:28px;font-size:15px">3</div>
             <div class="step-txt" style="font-size:17px">
-              <strong>追蹤評估</strong>：每次化療輸注前評估 CTCAE 分級；最後一次化療結束後 <span class="hl">1 個月及 6 個月</span>各執行一次追蹤評估
+              <strong>追蹤評估</strong>：每次化療輸注前同步執行 <span class="hl">CTCAE 分級</span>與 <span class="hl">音叉震動覺</span>測試；最後一次化療結束後 <span class="hl">1 個月及 6 個月</span>各執行一次追蹤評估
             </div>
           </div>
         </div>
@@ -1194,13 +1194,15 @@ body{background:#1A1A1C;display:flex;flex-direction:column;
       <!-- 結果指標 -->
       <div class="card" style="border-left-color:var(--green);padding:8px 13px">
         <div class="ct" style="font-size:19px">▸ 結果評估指標</div>
-        <div class="cb" style="font-size:17px;line-height:1.6">
-          採用 <span class="hl">CTCAE v5 感覺 / 運動神經病變分級</span>為主要結果指標<br>
-          <span style="font-size:15px;color:var(--muted)">
-            → 為本次三篇納入文獻共同採用之評估工具
-            <span class="cite">（Michel et al., 2025；Hu et al., 2025）</span>，
-            具明確臨床切點（Grade ≥ 2 = 影響日常活動，需臨床介入），便於跨研究比較與結果解讀
-          </span>
+        <div class="cb" style="font-size:17px;line-height:1.55">
+          <strong>主觀測量指標：</strong><span class="hl">CTCAE v5 感覺 / 運動神經病變分級</span>
+          <span class="cite" style="font-size:13px">（Michel et al., 2025；Hu et al., 2025）</span>
+          <span style="font-size:15px;color:var(--muted)">→ 為本次三篇納入文獻共同採用之評估工具，具明確臨床切點（Grade ≥ 2 = 影響日常活動，需臨床介入），便於跨研究比較與結果解讀</span><br>
+          <strong>客觀測量指標：</strong><span class="hl">128 Hz 音叉測試</span>
+          <span style="font-size:15px;color:var(--muted)">→ 藉震動覺評估周邊神經纖維受損程度</span>
+          <div style="margin-top:5px;padding:5px 9px;background:#FFFBEA;border-left:3px solid var(--yellow);border-radius:2px;font-size:14px;color:var(--txt);line-height:1.5">
+            <strong style="color:var(--yellow)">※ 新增客觀指標之理由：</strong>ROB 2.0 評讀 D4（結果測量偏誤）顯示，CTCAE 感覺分級<strong>需病人自述症狀</strong>，易受知覺偏差影響；故輔以客觀量測工具以降低單一主觀評估之偏誤風險
+          </div>
         </div>
       </div>
 
